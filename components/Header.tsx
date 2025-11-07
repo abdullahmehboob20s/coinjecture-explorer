@@ -1,15 +1,14 @@
 import React from "react";
 import { Activity, Blocks, Wallet } from "lucide-react";
 import NavLink from "./NavLink";
+import Image from "next/image";
 
 export const Header: React.FC = () => {
     return (
         <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="container flex h-16 items-center justify-between px-4 mx-auto">
-                <NavLink href="/" className="flex items-center space-x-2" end>
-                    <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                        <span className="text-lg font-bold text-primary-foreground">₿</span>
-                    </div>
+                <NavLink href="/" className="flex items-center space-x-4" end>
+                    <Image src="/brand-logo.png" width={40} height={40} className="size-10" alt="brand-logo" />
                     <div className="flex flex-col">
                         <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                             COINjecture
