@@ -1,5 +1,5 @@
 import React from "react";
-import { Activity, Blocks, Wallet } from "lucide-react";
+import { Activity, Blocks, LandPlot, Wallet } from "lucide-react";
 import NavLink from "./NavLink";
 import Image from "next/image";
 
@@ -27,7 +27,7 @@ export const Header: React.FC = () => {
 
                 <nav className="hidden md:flex items-center space-x-1">
                     <NavLink
-                        href="/"
+                        href="/dashboard"
                         end
                         className="px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-muted flex items-center space-x-2"
                         activeClassName="bg-muted text-primary"
@@ -53,13 +53,22 @@ export const Header: React.FC = () => {
                         <Wallet className="size-4" />
                         <span>Rewards</span>
                     </NavLink>
+
+                    <NavLink
+                        href="/marketplace"
+                        className="px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-muted flex items-center space-x-2"
+                        activeClassName="bg-muted text-primary"
+                    >
+                        <LandPlot className="size-4" />
+                        <span>Data Marketplace</span>
+                    </NavLink>
                 </nav>
             </div>
 
             {/* Mobile nav */}
             <nav className="md:hidden flex items-center justify-around border-t border-border/40 bg-card">
                 <NavLink
-                    href="/"
+                    href="/dashboard"
                     end
                     className="flex-1 flex flex-col items-center py-3 text-xs font-medium transition-colors"
                     activeClassName="text-primary"
