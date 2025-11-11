@@ -1,16 +1,17 @@
 "use client"
 
+
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 const API_BASES = ['https://api.coinjecture.com', 'http://167.172.213.70:12346'];
 const API_TIMEOUT = 25000;
 
-const addCacheBuster = (url) => {
+const addCacheBuster = (url: any) => {
     const separator = url.includes('?') ? '&' : '?';
     return `${url}${separator}cb=${Date.now()}`;
 };
 
-const fetchWithTimeout = async (url, options = {}) => {
+const fetchWithTimeout = async (url: any, options: any = {}) => {
     const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
     const timeoutId = controller ? setTimeout(() => controller.abort(), API_TIMEOUT) : null;
 
@@ -48,7 +49,7 @@ const fetchWithTimeout = async (url, options = {}) => {
     }
 };
 
-const fetchJSON = async (path, options = {}) => {
+const fetchJSON = async (path: string, options = {}) => {
     let lastError = null;
     for (const base of API_BASES) {
         const url = path.startsWith('http') ? path : `${base}${path}`;
@@ -210,7 +211,7 @@ const CONTACT_INFO = [
     { label: 'API Endpoint', value: 'http://167.172.213.70:12346' },
 ];
 
-const formatNumber = (value, fallback = '0') => {
+const formatNumber = (value: number, fallback = '0') => {
     if (value === null || value === undefined || Number.isNaN(Number(value))) {
         return fallback;
     }
@@ -220,7 +221,7 @@ const formatNumber = (value, fallback = '0') => {
         : numeric.toLocaleString(undefined, { maximumFractionDigits: 2 });
 };
 
-const resolveTimestamp = (timestamp) => {
+const resolveTimestamp = (timestamp: any) => {
     if (!timestamp) return 'Unknown';
     const millis = timestamp > 1e12 ? timestamp : timestamp * 1000;
     const date = new Date(millis);
@@ -240,7 +241,7 @@ const MarketplaceComponent = () => {
     const [error, setError] = useState(null);
     const [apiOutput, setApiOutput] = useState('Click a button to test the API...');
 
-    const computeDerivedStats = useCallback((data) => {
+    const computeDerivedStats = useCallback((data: any) => {
         if (!data) return null;
 
         const blockchain = data.blockchain ?? {};
@@ -255,18 +256,18 @@ const MarketplaceComponent = () => {
             0;
 
         const uniqueCids = new Set();
-        recentTx.forEach((tx) => {
+        recentTx.forEach((tx: any) => {
             if (tx?.cid) uniqueCids.add(tx.cid);
         });
         if (Array.isArray(blockchain.cids)) {
-            blockchain.cids.forEach((cid) => {
+            blockchain.cids.forEach((cid: any) => {
                 if (cid) uniqueCids.add(cid);
             });
         }
 
         let totalComplexity = 0;
         let complexityCount = 0;
-        recentTx.forEach((tx) => {
+        recentTx.forEach((tx: any) => {
             if (tx?.work_score && !Number.isNaN(Number(tx.work_score))) {
                 totalComplexity += Number(tx.work_score);
                 complexityCount += 1;
@@ -336,7 +337,7 @@ const MarketplaceComponent = () => {
                 });
                 setRecentTransactions([]);
                 setError(
-                    'Live metrics unavailable. Showing latest block information as a fallback.',
+                    'Live metrics unavailable. Showing latest block information as a fallback.' as any,
                 );
             } catch (fallbackError) {
                 setStats({
@@ -347,7 +348,7 @@ const MarketplaceComponent = () => {
                 });
                 setRecentTransactions([]);
                 setError(
-                    `Unable to load marketplace data: ${fallbackError?.message ?? primaryError?.message}`,
+                    `Unable to load marketplace data: ${(fallbackError as any)?.message ?? (primaryError as any)?.message}` as any,
                 );
             }
         } finally {
@@ -359,7 +360,7 @@ const MarketplaceComponent = () => {
         loadMarketplaceData();
     }, [loadMarketplaceData]);
 
-    const handleApiDemo = useCallback(async (type) => {
+    const handleApiDemo = useCallback(async (type: string) => {
         try {
             setApiOutput('Loading...');
             if (type === 'metrics') {
@@ -379,13 +380,13 @@ const MarketplaceComponent = () => {
                 setApiOutput('Unknown demo action');
             }
         } catch (demoError) {
-            setApiOutput(`Error: ${demoError.message}`);
+            setApiOutput(`Error: ${(demoError as any).message}`);
         }
     }, []);
 
     const transactionList = useMemo(
         () =>
-            recentTransactions.map((tx) => ({
+            recentTransactions.map((tx: any) => ({
                 block: tx?.block ?? tx?.block_number ?? tx?.height ?? 'N/A',
                 hash: tx?.hash ?? tx?.block_hash ?? 'N/A',
                 miner:

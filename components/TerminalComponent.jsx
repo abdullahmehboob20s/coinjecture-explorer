@@ -192,7 +192,7 @@ const TerminalComponent = () => {
   const outputRef = useRef(null);
   const miningIntervalRef = useRef(null);
   const inputRef = useRef(null);
-  const walletRef = useRef(null);
+  const walletRef = useRef < any > (null);
 
   const addOutput = useCallback((text, type = 'info') => {
     setOutputs((prev) => [
