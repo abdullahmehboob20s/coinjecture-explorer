@@ -1,11 +1,11 @@
 import { useEffect, useRef, useCallback } from "react";
 
-const OutsideClickDetector = (handler, enabled) => {
-  const ref = useRef(null);
+const OutsideClickDetector = <T extends HTMLElement>(handler: () => void, enabled: boolean) => {
+  const ref = useRef<T>(null);
 
   const handleClick = useCallback(
-    (event) => {
-      if (enabled && ref.current && !ref.current.contains(event.target)) {
+    (event: MouseEvent) => {
+      if (enabled && ref.current && !ref.current.contains(event.target as Node)) {
         handler();
       }
     },

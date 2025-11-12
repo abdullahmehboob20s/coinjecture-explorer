@@ -11,7 +11,7 @@ export const Header: React.FC = () => {
     const [isSidebarVisible, setSidebarVisibility] = useState(false);
     const shouldRender = useDelayUnmount(isSidebarVisible, 300);
 
-    const sidebarRef = OutsideClickDetector(() => {
+    const sidebarRef = OutsideClickDetector<HTMLDivElement>(() => {
         setSidebarVisibility(false);
     }, isSidebarVisible === true);
 
