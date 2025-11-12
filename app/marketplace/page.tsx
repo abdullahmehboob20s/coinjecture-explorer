@@ -1,6 +1,10 @@
 "use client"
 
 
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { formatAddress } from '@/lib/utils';
+import { RotateCw } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 const API_BASES = ['https://api.coinjecture.com', 'http://167.172.213.70:12346'];
@@ -360,7 +364,7 @@ const MarketplaceComponent = () => {
 
     return (
         <div className="min-h-screen bg-slate-950">
-            <div className="container mx-auto space-y-16 pt-14 pb-32">
+            <div className="px-4 container mx-auto space-y-16 pt-14 pb-32">
                 <header className="text-center space-y-4">
                     <p className="inline-flex items-center gap-2 rounded-full bg-purple-500/10 px-4 py-1 text-sm font-semibold text-purple-300">
                         🏪 COINjecture Data Marketplace v3.16.1
@@ -373,17 +377,21 @@ const MarketplaceComponent = () => {
                     </p>
                 </header>
 
-                <section className="bg-slate-900/60 border border-slate-800 rounded-3xl shadow-xl shadow-purple-900/20 p-8 space-y-6">
+                <section className="bg-slate-900/60 border border-slate-800 rounded-xl p-8 space-y-6">
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                        <h2 className="text-2xl font-semibold text-white">📊 Live Data Statistics</h2>
+                        <h2 className="text-2xl font-semibold text-white">Live Data Statistics</h2>
                         <div className="flex items-center gap-3">
-                            <button
+                            <Button
+                                variant="ghost"
                                 type="button"
                                 onClick={loadMarketplaceData}
-                                className="inline-flex items-center gap-2 rounded-full border border-purple-500/50 bg-purple-500/10 px-4 py-2 text-sm font-medium text-purple-200 hover:bg-purple-500/20 transition-colors"
+                                className="hover:bg-transparent hover:text-white hover:opacity-80 !p-0 h-auto"
                             >
-                                🔄 Refresh
-                            </button>
+                                <span>
+                                    Refresh
+                                </span>
+                                <RotateCw className='size-3' />
+                            </Button>
                             {loading && (
                                 <span className="text-xs text-slate-400 uppercase tracking-wide">
                                     Updating...
@@ -428,10 +436,10 @@ const MarketplaceComponent = () => {
                     {transactionList.length > 0 && (
                         <div className="pt-6 border-t border-slate-800">
                             <h3 className="text-lg font-semibold text-white mb-4">
-                                📋 Recent Transactions (Last 6 Blocks)
+                                Recent Transactions (Last 6 Blocks)
                             </h3>
                             <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950/40">
-                                <table className="min-w-full divide-y divide-slate-800 text-sm">
+                                <table className="min-w-full divide-y divide-slate-800 text-sm [&_td]:whitespace-nowrap [&_th]:whitespace-nowrap">
                                     <thead className="bg-slate-900/60 text-slate-400 uppercase tracking-wide text-xs">
                                         <tr>
                                             <th scope="col" className="px-4 py-3 text-left font-semibold">Block</th>
@@ -445,8 +453,8 @@ const MarketplaceComponent = () => {
                                         {transactionList.map((tx) => (
                                             <tr key={`${tx.block}-${tx.hash}`}>
                                                 <td className="px-4 py-3 font-mono text-purple-300">{tx.block}</td>
-                                                <td className="px-4 py-3 font-mono text-xs break-all">{tx.hash}</td>
-                                                <td className="px-4 py-3 font-mono text-xs break-all">{tx.miner}</td>
+                                                <td className="px-4 py-3 font-mono text-xs break-all">{formatAddress(tx.hash, 6)}</td>
+                                                <td className="px-4 py-3 font-mono text-xs break-all">{formatAddress(tx.miner, 6)}</td>
                                                 <td className="px-4 py-3">{formatNumber(tx.workScore, '0')}</td>
                                                 <td className="px-4 py-3">{formatNumber(tx.capacity, 'N/A')}</td>
                                             </tr>
@@ -459,12 +467,12 @@ const MarketplaceComponent = () => {
                 </section>
 
                 <section className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-white">🔬 Research Data Products</h2>
+                    <h2 className="text-2xl font-semibold text-white">Research Data Products</h2>
                     <div className="grid gap-6 md:grid-cols-2">
                         {DATA_PRODUCTS.map((product) => (
                             <article
                                 key={product.title}
-                                className="rounded-3xl border border-slate-800 bg-slate-900/50 p-6 shadow-lg shadow-purple-900/10"
+                                className="rounded-3xl border border-slate-800 bg-slate-900/50 p-6"
                             >
                                 <div className="space-y-4">
                                     <h3 className="text-xl font-semibold text-white">{product.title}</h3>
@@ -489,19 +497,20 @@ const MarketplaceComponent = () => {
 
                 <section className="space-y-6">
                     <h2 className="text-2xl font-semibold text-white">
-                        🔐 Data Quality &amp; Technical Specifications
+                        Data Quality &amp; Technical Specifications
                     </h2>
                     <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
                         {QUALITY_CARDS.map((card) => (
                             <article
                                 key={card.title}
-                                className="rounded-3xl border border-slate-800 bg-slate-900/60 p-6 shadow-lg shadow-purple-900/10"
+                                className="rounded-3xl border border-slate-800 bg-slate-900/60 p-6 flex flex-col"
                             >
-                                <h3 className="text-lg font-semibold text-white">{card.title}</h3>
-                                <p className="mt-3 text-sm leading-6 text-slate-300">{card.body}</p>
-                                <p className="mt-4 text-xs uppercase tracking-wide text-purple-200 bg-purple-500/10 inline-flex px-3 py-1 rounded-full border border-purple-500/30">
-                                    {card.detail}
-                                </p>
+                                <main className='flex-1'>
+                                    <h3 className="text-lg font-semibold text-white">{card.title}</h3>
+                                    <p className="mt-3 text-sm leading-6 text-slate-300">{card.body}</p>
+                                </main>
+
+                                <p className='text-sm mt-4 text-balance text-neutral-300 font-medium'>{card.detail}</p>
                             </article>
                         ))}
                     </div>
@@ -533,12 +542,12 @@ const MarketplaceComponent = () => {
                 </section>
 
                 <section className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-white">🔌 Live API Demo</h2>
+                    <h2 className="text-2xl font-semibold text-white">Live API Demo</h2>
                     <p className="text-slate-400">
                         Test our primary API endpoints with real-time data directly from the COINjecture network.
                     </p>
                     <div className="grid gap-6 lg:grid-cols-[320px,1fr]">
-                        <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-6 flex gap-4">
+                        <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-6 flex flex-wrap gap-4 [&_button]:whitespace-nowrap">
                             <button
                                 type="button"
                                 onClick={() => handleApiDemo('metrics')}
