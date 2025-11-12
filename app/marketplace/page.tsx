@@ -147,49 +147,6 @@ const QUALITY_CARDS = [
     },
 ];
 
-const PRICING_TIERS = [
-    {
-        name: 'Basic',
-        beans: '5,000 $BEANS',
-        usd: '$99 USD',
-        features: [
-            '✅ 1,000 computational records',
-            '✅ CSV & JSON formats',
-            '✅ Basic complexity metrics',
-            '✅ 30-day access',
-            '✅ Email support',
-        ],
-    },
-    {
-        name: 'Professional',
-        beans: '25,000 $BEANS',
-        usd: '$299 USD',
-        features: [
-            '✅ 10,000 computational records',
-            '✅ All formats (CSV, JSON, Parquet)',
-            '✅ Complete IPFS proofs',
-            '✅ Real-time API access',
-            '✅ 90-day access',
-            '✅ Priority support',
-        ],
-        featured: true,
-    },
-    {
-        name: 'Enterprise',
-        beans: '100,000 $BEANS',
-        usd: '$999 USD',
-        features: [
-            '✅ Unlimited records',
-            '✅ All formats + custom exports',
-            '✅ Complete IPFS archive',
-            '✅ Live data streaming',
-            '✅ 1-year access',
-            '✅ Dedicated support',
-            '✅ Custom data processing',
-        ],
-    },
-];
-
 const SAMPLE_DOWNLOADS = [
     {
         title: 'Computational Data Sample',
@@ -545,49 +502,6 @@ const MarketplaceComponent = () => {
                                 <p className="mt-4 text-xs uppercase tracking-wide text-purple-200 bg-purple-500/10 inline-flex px-3 py-1 rounded-full border border-purple-500/30">
                                     {card.detail}
                                 </p>
-                            </article>
-                        ))}
-                    </div>
-                </section>
-
-                <section className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-white">💰 Pricing Tiers</h2>
-                    <div className="rounded-3xl border border-purple-500/30 bg-purple-500/10 px-4 py-3 text-center text-sm font-semibold text-purple-100">
-                        🔥 Limited Time: Save 95% with $BEANS tokens!
-                    </div>
-                    <div className="grid gap-6 md:grid-cols-3">
-                        {PRICING_TIERS.map((tier) => (
-                            <article
-                                key={tier.name}
-                                className={`rounded-3xl border p-6 shadow-xl transition-transform hover:-translate-y-1 ${tier.featured
-                                    ? 'border-purple-500/80 bg-purple-500/15 shadow-purple-900/30'
-                                    : 'border-slate-800 bg-slate-900/60 shadow-purple-900/10'
-                                    }`}
-                            >
-                                {tier.featured && (
-                                    <p className="inline-flex items-center gap-2 rounded-full bg-purple-500/20 px-3 py-1 text-xs font-semibold text-purple-100">
-                                        Most Popular
-                                    </p>
-                                )}
-                                <h3 className="mt-4 text-xl font-semibold text-white">{tier.name}</h3>
-                                <div className="mt-3 text-sm text-purple-200 space-y-1">
-                                    <p className="text-2xl font-bold text-white">{tier.beans}</p>
-                                    <p>{tier.usd}</p>
-                                </div>
-                                <ul className="mt-5 space-y-2 text-sm text-slate-200">
-                                    {tier.features.map((feature) => (
-                                        <li key={feature}>{feature}</li>
-                                    ))}
-                                </ul>
-                                <button
-                                    type="button"
-                                    className={`mt-6 w-full rounded-full px-4 py-2 text-sm font-semibold transition-colors ${tier.featured
-                                        ? 'bg-white text-purple-700 hover:bg-slate-100'
-                                        : 'bg-purple-500/20 text-purple-100 hover:bg-purple-500/30'
-                                        }`}
-                                >
-                                    Choose {tier.name}
-                                </button>
                             </article>
                         ))}
                     </div>

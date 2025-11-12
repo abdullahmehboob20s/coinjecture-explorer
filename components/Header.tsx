@@ -1,7 +1,8 @@
 import React from "react";
-import { Activity, Blocks, LandPlot, Wallet } from "lucide-react";
+import { Activity, Blocks, CirclePercent, LandPlot, Wallet } from "lucide-react";
 import NavLink from "./NavLink";
 import Image from "next/image";
+import { Button } from "./ui/button";
 
 export const Header: React.FC = () => {
     return (
@@ -61,6 +62,24 @@ export const Header: React.FC = () => {
                     >
                         <LandPlot className="size-4" />
                         <span>Data Marketplace</span>
+                    </NavLink>
+
+                    <NavLink
+                        href="/pricing"
+                        className="px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-muted flex items-center space-x-2"
+                        activeClassName="bg-muted text-primary"
+                    >
+                        <CirclePercent className="size-4" />
+                        <span>Pricing</span>
+                    </NavLink>
+
+                    <NavLink
+                        href="/book-call"
+                        className="px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-muted flex items-center space-x-2"
+                        activeClassName="bg-muted text-primary"
+                    >
+                        <CirclePercent className="size-4" />
+                        <span>Book a call</span>
                     </NavLink>
                 </nav>
             </div>
