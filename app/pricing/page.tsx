@@ -42,7 +42,7 @@ const PRICING_TIERS = [
 ];
 
 const PricingPage = () => {
-    return <div className="container mx-auto px-4 py-8">
+    return <div className="container mx-auto px-4 pt-8 pb-28">
         <section className="space-y-12">
             <header className="text-center space-y-4">
                 <p className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1 text-sm font-semibold text-primary text-balance">

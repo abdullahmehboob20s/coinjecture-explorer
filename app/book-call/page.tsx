@@ -124,7 +124,6 @@ const BookCallPage = () => {
         <main className="min-h-screen bg-background">
             <BookCallHero />
             <ContactSection />
-            <Footer />
         </main>
     )
 }

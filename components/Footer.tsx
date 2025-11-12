@@ -9,7 +9,7 @@ export function Footer() {
                     </p>
                 </div>
 
-                <main className="grid grid-cols-2 sm:grid-cols-[1fr_1fr_1fr_auto] flex-1 gap-12">
+                <main className="grid grid-cols-2 sm:grid-cols-4 flex-1 gap-12 justify-end">
                     <div className="max-lg:hidden"></div>
 
                     <div>

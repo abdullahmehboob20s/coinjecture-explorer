@@ -360,7 +360,7 @@ const MarketplaceComponent = () => {
 
     return (
         <div className="min-h-screen bg-slate-950">
-            <div className="container mx-auto space-y-16 py-14">
+            <div className="container mx-auto space-y-16 pt-14 pb-32">
                 <header className="text-center space-y-4">
                     <p className="inline-flex items-center gap-2 rounded-full bg-purple-500/10 px-4 py-1 text-sm font-semibold text-purple-300">
                         🏪 COINjecture Data Marketplace v3.16.1
@@ -571,24 +571,6 @@ const MarketplaceComponent = () => {
                         <div className="rounded-lg border border-slate-800 bg-black/70 p-6 font-mono text-xs text-slate-200 overflow-x-auto max-h-96">
                             <pre className="whitespace-pre-wrap">{apiOutput}</pre>
                         </div>
-                    </div>
-                </section>
-
-                <section className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-white">📞 Get Started Today</h2>
-                    <p className="text-slate-400">
-                        Ready to access computational-grade datasets? Reach out for onboarding, enterprise pricing, or research partnerships.
-                    </p>
-                    <div className="grid gap-6 sm:grid-cols-3">
-                        {CONTACT_INFO.map((item) => (
-                            <div
-                                key={item.label}
-                                className="rounded-3xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg shadow-purple-900/10"
-                            >
-                                <dt className="text-xs uppercase tracking-wide text-slate-500">{item.label}</dt>
-                                <dd className="mt-2 text-sm font-semibold text-slate-100">{item.value}</dd>
-                            </div>
-                        ))}
                     </div>
                 </section>
             </div>

@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/sonner"
 import "./globals.css";
 import QueryClientProvider from "@/components/QueryClientProvider";
 import Header from "@/components/Header";
+import Layout from "@/components/Layout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,10 +53,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <QueryClientProvider>
-          <main>
-            <Header />
+          <Layout>
             {children}
-          </main>
+          </Layout>
         </QueryClientProvider>
         <Toaster />
       </body>
